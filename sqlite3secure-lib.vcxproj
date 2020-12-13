@@ -109,6 +109,17 @@
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
+    <PostBuildEvent>
+      <Command>if not exist $(SolutionDir)build\nul mkdir $(SolutionDir)build
+if not exist $(SolutionDir)build\windows\nul mkdir $(SolutionDir)build\windows
+if not exist $(SolutionDir)build\windows\include\nul mkdir $(SolutionDir)build\windows\include
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib
+xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -129,6 +140,17 @@
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
+    <PostBuildEvent>
+      <Command>if not exist $(SolutionDir)build\nul mkdir $(SolutionDir)build
+if not exist $(SolutionDir)build\windows\nul mkdir $(SolutionDir)build\windows
+if not exist $(SolutionDir)build\windows\include\nul mkdir $(SolutionDir)build\windows\include
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib
+xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -142,6 +164,17 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(SolutionDir)build\nul mkdir $(SolutionDir)build
+if not exist $(SolutionDir)build\windows\nul mkdir $(SolutionDir)build\windows
+if not exist $(SolutionDir)build\windows\include\nul mkdir $(SolutionDir)build\windows\include
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib
+xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -159,6 +192,17 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(SolutionDir)build\nul mkdir $(SolutionDir)build
+if not exist $(SolutionDir)build\windows\nul mkdir $(SolutionDir)build\windows
+if not exist $(SolutionDir)build\windows\include\nul mkdir $(SolutionDir)build\windows\include
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin
+if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib
+xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\carray.c">
