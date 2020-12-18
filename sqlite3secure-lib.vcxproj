@@ -117,7 +117,7 @@ if not exist $(SolutionDir)build\windows\$(PlatformShortName)\nul mkdir $(Soluti
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib
-xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
+if exist lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -148,7 +148,7 @@ if not exist $(SolutionDir)build\windows\$(PlatformShortName)\nul mkdir $(Soluti
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib
-xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
+if exist lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -172,7 +172,7 @@ if not exist $(SolutionDir)build\windows\$(PlatformShortName)\nul mkdir $(Soluti
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib
-xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
+if exist lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -200,7 +200,7 @@ if not exist $(SolutionDir)build\windows\$(PlatformShortName)\nul mkdir $(Soluti
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\bin
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib
-xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
+if exist lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) xcopy /D /Y lib\$(PlatformShortName)\$(Configuration)\$(TargetName)$(TargetExt) $(SolutionDir)build\windows\$(PlatformShortName)\$(Configuration)\lib\
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
