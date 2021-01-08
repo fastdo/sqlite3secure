@@ -112,6 +112,7 @@
       <Command>if not exist $(SolutionDir)build\nul mkdir $(SolutionDir)build
 if not exist $(SolutionDir)build\windows\nul mkdir $(SolutionDir)build\windows
 if not exist $(SolutionDir)build\windows\include\nul mkdir $(SolutionDir)build\windows\include
+xcopy /D /Y include\* $(SolutionDir)build\windows\include\
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\bin
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\lib
@@ -142,6 +143,7 @@ if exist dll\$(PlatformShortName)-$(Configuration)\$(TargetName).lib xcopy /D /Y
       <Command>if not exist $(SolutionDir)build\nul mkdir $(SolutionDir)build
 if not exist $(SolutionDir)build\windows\nul mkdir $(SolutionDir)build\windows
 if not exist $(SolutionDir)build\windows\include\nul mkdir $(SolutionDir)build\windows\include
+xcopy /D /Y include\* $(SolutionDir)build\windows\include\
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\bin
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\lib
@@ -168,6 +170,7 @@ if exist dll\$(PlatformShortName)-$(Configuration)\$(TargetName).lib xcopy /D /Y
       <Command>if not exist $(SolutionDir)build\nul mkdir $(SolutionDir)build
 if not exist $(SolutionDir)build\windows\nul mkdir $(SolutionDir)build\windows
 if not exist $(SolutionDir)build\windows\include\nul mkdir $(SolutionDir)build\windows\include
+xcopy /D /Y include\* $(SolutionDir)build\windows\include\
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\bin
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\lib
@@ -198,6 +201,7 @@ if exist dll\$(PlatformShortName)-$(Configuration)\$(TargetName).lib xcopy /D /Y
       <Command>if not exist $(SolutionDir)build\nul mkdir $(SolutionDir)build
 if not exist $(SolutionDir)build\windows\nul mkdir $(SolutionDir)build\windows
 if not exist $(SolutionDir)build\windows\include\nul mkdir $(SolutionDir)build\windows\include
+xcopy /D /Y include\* $(SolutionDir)build\windows\include\
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\bin\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\bin
 if not exist $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\lib\nul mkdir $(SolutionDir)build\windows\$(PlatformShortName)-$(Configuration)\lib
