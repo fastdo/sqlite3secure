@@ -157,9 +157,9 @@ int RegisterExtensionFunctions(sqlite3 *db);
 */
 #ifdef SQLITE_ENABLE_CSV
 /* Prototype for initialization function of CSV extension */
-#ifdef _WIN32
-__declspec(dllexport)
-#endif
+// #ifdef _WIN32
+// __declspec(dllexport)
+// #endif
 int sqlite3_csv_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi);
 #include "csv.c"
 #endif
@@ -169,9 +169,9 @@ int sqlite3_csv_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *p
 */
 #ifdef SQLITE_ENABLE_SHA3
 /* Prototype for initialization function of SHA3 extension */
-#ifdef _WIN32
-__declspec(dllexport)
-#endif
+// #ifdef _WIN32
+// __declspec(dllexport)
+// #endif
 int sqlite3_shathree_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi);
 #include "shathree.c"
 #endif
@@ -181,9 +181,9 @@ int sqlite3_shathree_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routin
 */
 #ifdef SQLITE_ENABLE_CARRAY
 /* Prototype for initialization function of CARRAY extension */
-#ifdef _WIN32
-__declspec(dllexport)
-#endif
+// #ifdef _WIN32
+// __declspec(dllexport)
+// #endif
 int sqlite3_carray_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi);
 #include "carray.c"
 #endif
@@ -193,9 +193,9 @@ int sqlite3_carray_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines
 */
 #ifdef SQLITE_ENABLE_FILEIO
 /* Prototype for initialization function of FILEIO extension */
-#ifdef _WIN32
-__declspec(dllexport)
-#endif
+// #ifdef _WIN32
+// __declspec(dllexport)
+// #endif
 int sqlite3_fileio_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi);
 
 /* MinGW specifics */
@@ -219,9 +219,9 @@ int sqlite3_fileio_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines
 */
 #ifdef SQLITE_ENABLE_SERIES
 /* Prototype for initialization function of SERIES extension */
-#ifdef _WIN32
-__declspec(dllexport)
-#endif
+// #ifdef _WIN32
+// __declspec(dllexport)
+// #endif
 int sqlite3_series_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi);
 #include "series.c"
 #endif
@@ -231,9 +231,9 @@ int sqlite3_series_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines
 */
 #ifdef SQLITE_ENABLE_UUID
 /* Prototype for initialization function of UUID extension */
-#ifdef _WIN32
-__declspec(dllexport)
-#endif
+// #ifdef _WIN32
+// __declspec(dllexport)
+// #endif
 int sqlite3_uuid_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi);
 #include "uuid.c"
 #endif
