@@ -687,9 +687,9 @@ static void sha3QueryFunc(
 }
 
 
-#ifdef _WIN32
+/*#ifdef _WIN32
 __declspec(dllexport)
-#endif
+#endif*/
 int sqlite3_shathree_init(
   sqlite3 *db,
   char **pzErrMsg,

@@ -928,9 +928,9 @@ static sqlite3_module CsvModuleFauxWrite = {
 #endif /* !defined(SQLITE_OMIT_VIRTUALTABLE) */
 
 
-#ifdef _WIN32
+/*#ifdef _WIN32
 __declspec(dllexport)
-#endif
+#endif*/
 /* 
 ** This routine is called when the extension is loaded.  The new
 ** CSV virtual table module is registered with the calling database

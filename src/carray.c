@@ -383,9 +383,9 @@ static void inttoptrFunc(
 
 #endif /* SQLITE_OMIT_VIRTUALTABLE */
 
-#ifdef _WIN32
+/*#ifdef _WIN32
 __declspec(dllexport)
-#endif
+#endif*/
 int sqlite3_carray_init(
   sqlite3 *db, 
   char **pzErrMsg, 

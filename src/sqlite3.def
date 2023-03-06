@@ -278,3 +278,10 @@ sqlite3_win32_write_debug
 wxsqlite3_codec_data
 wxsqlite3_config
 wxsqlite3_config_cipher
+; extension init functions
+sqlite3_carray_init
+sqlite3_csv_init
+sqlite3_fileio_init
+sqlite3_series_init
+sqlite3_shathree_init
+sqlite3_uuid_init
