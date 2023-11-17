@@ -119,9 +119,6 @@
     <ClInclude Include="src\test_windirent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\sqlite370.ico">

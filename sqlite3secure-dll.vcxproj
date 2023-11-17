@@ -341,7 +341,6 @@ if exist dll\$(PlatformShortName)-$(Configuration)\$(TargetName).lib xcopy /D /Y
     <ClInclude Include="src\codec.h" />
     <ClInclude Include="src\fastpbkdf2.h" />
     <ClInclude Include="src\mystdint.h" />
-    <ClInclude Include="src\resource.h" />
     <ClInclude Include="src\rijndael.h" />
     <ClInclude Include="src\sha1.h" />
     <ClInclude Include="src\sha2.h" />
