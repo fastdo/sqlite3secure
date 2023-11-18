@@ -25,12 +25,8 @@ file(
 list(APPEND SQLITE3SECURE_SRCS "src/sqlite3secure.c" "src/sqlite3.def" "src/sqlite3.rc")
 list(REMOVE_ITEM SQLITE3SECURE_INTERNAL_MISCS ${SQLITE3SECURE_INTERNAL_HEADERS} ${SQLITE3SECURE_INTERNAL_SRCS})
 list(REMOVE_ITEM SQLITE3SECURE_INTERNAL_SRCS ${SQLITE3SECURE_SRCS})
-
-add_library(sqlite3secure SHARED ${SQLITE3SECURE_SRCS} ${SQLITE3SECURE_INTERNAL_HEADERS})
-target_include_directories(sqlite3secure PUBLIC include)
-target_compile_definitions(
-    sqlite3secure
-    PRIVATE
+list(
+    APPEND SQLITE3SECURE_DEFINITIONS
     THREADSAFE=1
     SQLITE_THREADSAFE=1
     SQLITE_DQS=0
@@ -58,26 +54,26 @@ target_compile_definitions(
     SQLITE_USE_URI
     SQLITE_USER_AUTHENTICATION
 )
-# # Sources
-# aux_source_directory(src WINUX_SRCS)
-# aux_source_directory(../eienexpr/src EIENEXPR_SRCS)
 
-# add_library(winux SHARED ${WINUX_SRCS} ${EIENEXPR_SRCS} ${WINUX_HEADERS} ${WINUX_INTERNAL_HEADERS} ${EIENEXPR_HEADERS})
-# target_include_directories(winux PUBLIC include PRIVATE ../eienexpr/include)
-# target_compile_definitions(winux PUBLIC WINUX_DLL_USE PRIVATE WINUX_DLL_EXPORTS)
+add_library(sqlite3secure SHARED ${SQLITE3SECURE_SRCS} ${SQLITE3SECURE_INTERNAL_HEADERS})
+target_include_directories(sqlite3secure PUBLIC include)
+target_compile_definitions(sqlite3secure PRIVATE ${SQLITE3SECURE_DEFINITIONS})
 
-# add_library(winux_a STATIC ${WINUX_SRCS} ${WINUX_HEADERS} ${WINUX_INTERNAL_HEADERS} ${EIENEXPR_HEADERS})
-# target_include_directories(winux_a PUBLIC include PRIVATE ../eienexpr/include)
+add_library(sqlite3secure_a STATIC ${SQLITE3SECURE_SRCS} ${SQLITE3SECURE_INTERNAL_HEADERS})
+target_include_directories(sqlite3secure_a PUBLIC include)
+target_compile_definitions(sqlite3secure_a PRIVATE ${SQLITE3SECURE_DEFINITIONS})
 
-# # Public headers
-# set_target_properties(winux winux_a PROPERTIES PUBLIC_HEADER "${WINUX_HEADERS}")
+set_target_properties(sqlite3secure sqlite3secure_a PROPERTIES PUBLIC_HEADER "${SQLITE3SECURE_HEADERS}")
 
+add_executable(sqlite3shell "src/shell.c" "src/sqlite3shell.rc")
+target_link_libraries(sqlite3shell PRIVATE sqlite3secure)
 
-# # Install
-# install(
-#     TARGETS winux winux_a
-#     ARCHIVE DESTINATION lib
-#     LIBRARY DESTINATION lib
-#     RUNTIME DESTINATION bin
-#     PUBLIC_HEADER DESTINATION include
-# )
+install(
+    TARGETS sqlite3secure sqlite3secure_a sqlite3shell
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
+    PUBLIC_HEADER DESTINATION include
+)
+
+include(CPack)
