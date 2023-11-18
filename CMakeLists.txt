@@ -68,11 +68,12 @@ set_target_properties(sqlite3secure sqlite3secure_a PROPERTIES PUBLIC_HEADER "${
 add_executable(sqlite3shell "src/shell.c" "src/sqlite3shell.rc")
 target_link_libraries(sqlite3shell PRIVATE sqlite3secure)
 
+set(DEST_PREFIX "$<$<BOOL:${CMAKE_GENERATOR_PLATFORM}>:${CMAKE_GENERATOR_PLATFORM}->$<CONFIG>")
 install(
     TARGETS sqlite3secure sqlite3secure_a sqlite3shell
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin
+    ARCHIVE DESTINATION "${DEST_PREFIX}/lib"
+    LIBRARY DESTINATION "${DEST_PREFIX}/lib"
+    RUNTIME DESTINATION "${DEST_PREFIX}/bin"
     PUBLIC_HEADER DESTINATION include
 )
 
