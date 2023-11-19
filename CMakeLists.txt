@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 2.8...3.28)
 project(sqlite3secure)
 # Set C99 standard
-include(CheckCCompilerFlag)
-CHECK_C_COMPILER_FLAG("-std=c99" COMPILER_SUPPORTS_C99)
-if(COMPILER_SUPPORTS_C99)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
-else()
-    message(FATAL_ERROR "The compiler ${CMAKE_C_COMPILER} has no C99 support. Please use a different C compiler.")
+if(UNIX)
+    include(CheckCCompilerFlag)
+    CHECK_C_COMPILER_FLAG("-std=c99" COMPILER_SUPPORTS_C99)
+    if(COMPILER_SUPPORTS_C99)
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
+    else()
+        message(FATAL_ERROR "The compiler ${CMAKE_C_COMPILER} has no C99 support. Please use a different C compiler.")
+    endif()
 endif()
 
 file(
@@ -99,12 +101,18 @@ endif()
 add_executable(sqlite3shell "src/shell.c" "src/sqlite3shell.rc")
 target_link_libraries(sqlite3shell PRIVATE sqlite3secure)
 
-#set(DEST_PREFIX "$<${CMAKE_GENERATOR_PLATFORM}:${CMAKE_GENERATOR_PLATFORM}->$<CONFIGURATION>")
+if(CMAKE_BUILD_TYPE)
+    set(DEST_PREFIX "${CMAKE_BUILD_TYPE}")
+else()
+    set(DEST_PREFIX "$<CONFIG>")
+endif()
+
+
 install(
     TARGETS sqlite3secure sqlite3secure_a sqlite3shell
-    ARCHIVE DESTINATION "${CMAKE_BUILD_TYPE}/lib"
-    LIBRARY DESTINATION "${CMAKE_BUILD_TYPE}/lib"
-    RUNTIME DESTINATION "${CMAKE_BUILD_TYPE}/bin"
+    ARCHIVE DESTINATION "${DEST_PREFIX}/lib"
+    LIBRARY DESTINATION "${DEST_PREFIX}/lib"
+    RUNTIME DESTINATION "${DEST_PREFIX}/bin"
     PUBLIC_HEADER DESTINATION include
 )
 
