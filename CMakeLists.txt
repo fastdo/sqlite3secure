@@ -1,5 +1,13 @@
 cmake_minimum_required(VERSION 2.8...3.28)
 project(sqlite3secure)
+# Set C99 standard
+include(CheckCCompilerFlag)
+CHECK_C_COMPILER_FLAG("-std=c99" COMPILER_SUPPORTS_C99)
+if(COMPILER_SUPPORTS_C99)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
+else()
+    message(FATAL_ERROR "The compiler ${CMAKE_C_COMPILER} has no C99 support. Please use a different C compiler.")
+endif()
 
 file(
     GLOB SQLITE3SECURE_HEADERS
@@ -65,15 +73,38 @@ target_compile_definitions(sqlite3secure_a PRIVATE ${SQLITE3SECURE_DEFINITIONS})
 
 set_target_properties(sqlite3secure sqlite3secure_a PROPERTIES PUBLIC_HEADER "${SQLITE3SECURE_HEADERS}")
 
+# Search libraries
+find_library(LIBPTHREAD pthread)
+if(LIBPTHREAD)
+    message(STATUS "pthread: ${LIBPTHREAD}")
+    target_link_libraries(sqlite3secure PRIVATE ${LIBPTHREAD})
+    target_link_libraries(sqlite3secure_a PRIVATE ${LIBPTHREAD})
+endif()
+
+find_library(LIBDL dl)
+if(LIBDL)
+    message(STATUS "dl: ${LIBDL}")
+    target_link_libraries(sqlite3secure PRIVATE ${LIBDL})
+    target_link_libraries(sqlite3secure_a PRIVATE ${LIBDL})
+endif()
+
+find_library(LIBM m)
+if(LIBM)
+    message(STATUS "m: ${LIBM}")
+    target_link_libraries(sqlite3secure PRIVATE ${LIBM})
+    target_link_libraries(sqlite3secure_a PRIVATE ${LIBM})
+endif()
+
+
 add_executable(sqlite3shell "src/shell.c" "src/sqlite3shell.rc")
 target_link_libraries(sqlite3shell PRIVATE sqlite3secure)
 
-set(DEST_PREFIX "$<$<BOOL:${CMAKE_GENERATOR_PLATFORM}>:${CMAKE_GENERATOR_PLATFORM}->$<CONFIG>")
+#set(DEST_PREFIX "$<${CMAKE_GENERATOR_PLATFORM}:${CMAKE_GENERATOR_PLATFORM}->$<CONFIGURATION>")
 install(
     TARGETS sqlite3secure sqlite3secure_a sqlite3shell
-    ARCHIVE DESTINATION "${DEST_PREFIX}/lib"
-    LIBRARY DESTINATION "${DEST_PREFIX}/lib"
-    RUNTIME DESTINATION "${DEST_PREFIX}/bin"
+    ARCHIVE DESTINATION "${CMAKE_BUILD_TYPE}/lib"
+    LIBRARY DESTINATION "${CMAKE_BUILD_TYPE}/lib"
+    RUNTIME DESTINATION "${CMAKE_BUILD_TYPE}/bin"
     PUBLIC_HEADER DESTINATION include
 )
 
