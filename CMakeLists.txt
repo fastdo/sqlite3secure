@@ -11,6 +11,7 @@ if(UNIX)
     endif()
 endif()
 
+# Files
 file(
     GLOB SQLITE3SECURE_HEADERS
     RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -32,9 +33,12 @@ file(
     "src/*.*"
 )
 
+# Sources
 list(APPEND SQLITE3SECURE_SRCS "src/sqlite3secure.c" "src/sqlite3.def" "src/sqlite3.rc")
 list(REMOVE_ITEM SQLITE3SECURE_INTERNAL_MISCS ${SQLITE3SECURE_INTERNAL_HEADERS} ${SQLITE3SECURE_INTERNAL_SRCS})
 list(REMOVE_ITEM SQLITE3SECURE_INTERNAL_SRCS ${SQLITE3SECURE_SRCS})
+
+# Definitions
 list(
     APPEND SQLITE3SECURE_DEFINITIONS
     THREADSAFE=1
@@ -65,6 +69,7 @@ list(
     SQLITE_USER_AUTHENTICATION
 )
 
+# Targets
 add_library(sqlite3secure SHARED ${SQLITE3SECURE_SRCS} ${SQLITE3SECURE_INTERNAL_HEADERS})
 target_include_directories(sqlite3secure PUBLIC include)
 target_compile_definitions(sqlite3secure PRIVATE ${SQLITE3SECURE_DEFINITIONS})
@@ -76,6 +81,8 @@ target_compile_definitions(sqlite3secure_a PRIVATE ${SQLITE3SECURE_DEFINITIONS})
 set_target_properties(sqlite3secure sqlite3secure_a PROPERTIES PUBLIC_HEADER "${SQLITE3SECURE_HEADERS}")
 
 # Search libraries
+message(STATUS "Project(${PROJECT_NAME}) search libraries ...")
+
 find_library(LIBPTHREAD pthread)
 if(LIBPTHREAD)
     message(STATUS "pthread: ${LIBPTHREAD}")
@@ -97,22 +104,22 @@ if(LIBM)
     target_link_libraries(sqlite3secure_a PRIVATE ${LIBM})
 endif()
 
-
+# EXE Targets
 add_executable(sqlite3shell "src/shell.c" "src/sqlite3shell.rc")
 target_link_libraries(sqlite3shell PRIVATE sqlite3secure)
 
 if(CMAKE_BUILD_TYPE)
-    set(DEST_PREFIX "${CMAKE_BUILD_TYPE}")
+    set(DEST_PREFIX "${CMAKE_BUILD_TYPE}/")
 else()
-    set(DEST_PREFIX "$<CONFIG>")
+    set(DEST_PREFIX "$<CONFIG>/")
 endif()
 
-
+# Install
 install(
     TARGETS sqlite3secure sqlite3secure_a sqlite3shell
-    ARCHIVE DESTINATION "${DEST_PREFIX}/lib"
-    LIBRARY DESTINATION "${DEST_PREFIX}/lib"
-    RUNTIME DESTINATION "${DEST_PREFIX}/bin"
+    ARCHIVE DESTINATION "${DEST_PREFIX}lib"
+    LIBRARY DESTINATION "${DEST_PREFIX}lib"
+    RUNTIME DESTINATION "${DEST_PREFIX}bin"
     PUBLIC_HEADER DESTINATION include
 )
 
