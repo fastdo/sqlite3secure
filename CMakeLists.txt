@@ -108,12 +108,6 @@ endif()
 add_executable(sqlite3shell "src/shell.c" "src/sqlite3shell.rc")
 target_link_libraries(sqlite3shell PRIVATE sqlite3secure)
 
-if(CMAKE_BUILD_TYPE)
-    set(DEST_PREFIX "${CMAKE_BUILD_TYPE}/")
-else()
-    set(DEST_PREFIX "$<CONFIG>/")
-endif()
-
 # Install
 install(
     TARGETS sqlite3secure sqlite3secure_a sqlite3shell
