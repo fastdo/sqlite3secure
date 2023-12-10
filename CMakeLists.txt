@@ -13,34 +13,34 @@ endif()
 
 # Files
 file(
-    GLOB SQLITE3SECURE_HEADERS
+    GLOB sqlite3secure_HEADERS
     RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
     "include/*.*"
 )
 file(
-    GLOB SQLITE3SECURE_INTERNAL_HEADERS
+    GLOB sqlite3secure_INTERNAL_HEADERS
     RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
     "src/*.h"
 )
 file(
-    GLOB SQLITE3SECURE_INTERNAL_SRCS
+    GLOB sqlite3secure_INTERNAL_SRCS
     RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
     "src/*.c"
 )
 file(
-    GLOB SQLITE3SECURE_INTERNAL_MISCS
+    GLOB sqlite3secure_INTERNAL_MISCS
     RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
     "src/*.*"
 )
 
 # Sources
-list(APPEND SQLITE3SECURE_SRCS "src/sqlite3secure.c" "src/sqlite3.def" "src/sqlite3.rc")
-list(REMOVE_ITEM SQLITE3SECURE_INTERNAL_MISCS ${SQLITE3SECURE_INTERNAL_HEADERS} ${SQLITE3SECURE_INTERNAL_SRCS})
-list(REMOVE_ITEM SQLITE3SECURE_INTERNAL_SRCS ${SQLITE3SECURE_SRCS})
+list(APPEND sqlite3secure_SRCS "src/sqlite3secure.c" "src/sqlite3.def" "src/sqlite3.rc")
+list(REMOVE_ITEM sqlite3secure_INTERNAL_MISCS ${sqlite3secure_INTERNAL_HEADERS} ${sqlite3secure_INTERNAL_SRCS})
+list(REMOVE_ITEM sqlite3secure_INTERNAL_SRCS ${sqlite3secure_SRCS})
 
 # Definitions
 list(
-    APPEND SQLITE3SECURE_DEFINITIONS
+    APPEND sqlite3secure_DEFINITIONS
     THREADSAFE=1
     SQLITE_THREADSAFE=1
     SQLITE_DQS=0
@@ -70,15 +70,15 @@ list(
 )
 
 # Targets
-add_library(sqlite3secure SHARED ${SQLITE3SECURE_SRCS} ${SQLITE3SECURE_INTERNAL_HEADERS})
+add_library(sqlite3secure SHARED ${sqlite3secure_SRCS} ${sqlite3secure_INTERNAL_HEADERS})
 target_include_directories(sqlite3secure PUBLIC include)
-target_compile_definitions(sqlite3secure PRIVATE ${SQLITE3SECURE_DEFINITIONS})
+target_compile_definitions(sqlite3secure PRIVATE ${sqlite3secure_DEFINITIONS})
 
-add_library(sqlite3secure_a STATIC ${SQLITE3SECURE_SRCS} ${SQLITE3SECURE_INTERNAL_HEADERS})
+add_library(sqlite3secure_a STATIC ${sqlite3secure_SRCS} ${sqlite3secure_INTERNAL_HEADERS})
 target_include_directories(sqlite3secure_a PUBLIC include)
-target_compile_definitions(sqlite3secure_a PRIVATE ${SQLITE3SECURE_DEFINITIONS})
+target_compile_definitions(sqlite3secure_a PRIVATE ${sqlite3secure_DEFINITIONS})
 
-set_target_properties(sqlite3secure sqlite3secure_a PROPERTIES PUBLIC_HEADER "${SQLITE3SECURE_HEADERS}")
+set_target_properties(sqlite3secure sqlite3secure_a PROPERTIES PUBLIC_HEADER "${sqlite3secure_HEADERS}")
 
 # Search libraries
 message(STATUS "Project(${PROJECT_NAME}) search libraries ...")
@@ -111,9 +111,9 @@ target_link_libraries(sqlite3shell PRIVATE sqlite3secure)
 # Install
 install(
     TARGETS sqlite3secure sqlite3secure_a sqlite3shell
-    ARCHIVE DESTINATION "${DEST_PREFIX}lib"
-    LIBRARY DESTINATION "${DEST_PREFIX}lib"
-    RUNTIME DESTINATION "${DEST_PREFIX}bin"
+    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}${INSTALL_SUB_PATH}"
+    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}${INSTALL_SUB_PATH}"
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}${INSTALL_SUB_PATH}"
     PUBLIC_HEADER DESTINATION include
 )
 
