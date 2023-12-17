@@ -83,26 +83,29 @@ set_target_properties(sqlite3secure sqlite3secure_a PROPERTIES PUBLIC_HEADER "${
 # Search libraries
 message(STATUS "Project(${PROJECT_NAME}) search libraries ...")
 
-find_library(LIBPTHREAD pthread)
-if(LIBPTHREAD)
-    message(STATUS "pthread: ${LIBPTHREAD}")
-    target_link_libraries(sqlite3secure PRIVATE ${LIBPTHREAD})
-    target_link_libraries(sqlite3secure_a PRIVATE ${LIBPTHREAD})
+if(UNIX)
+    find_library(LIBPTHREAD pthread)
+    if(LIBPTHREAD)
+        message(STATUS "pthread: ${LIBPTHREAD}")
+        target_link_libraries(sqlite3secure PRIVATE ${LIBPTHREAD})
+        target_link_libraries(sqlite3secure_a PRIVATE ${LIBPTHREAD})
+    endif()
+
+    find_library(LIBDL dl)
+    if(LIBDL)
+        message(STATUS "dl: ${LIBDL}")
+        target_link_libraries(sqlite3secure PRIVATE ${LIBDL})
+        target_link_libraries(sqlite3secure_a PRIVATE ${LIBDL})
+    endif()
+
+    find_library(LIBM m)
+    if(LIBM)
+        message(STATUS "m: ${LIBM}")
+        target_link_libraries(sqlite3secure PRIVATE ${LIBM})
+        target_link_libraries(sqlite3secure_a PRIVATE ${LIBM})
+    endif()
 endif()
 
-find_library(LIBDL dl)
-if(LIBDL)
-    message(STATUS "dl: ${LIBDL}")
-    target_link_libraries(sqlite3secure PRIVATE ${LIBDL})
-    target_link_libraries(sqlite3secure_a PRIVATE ${LIBDL})
-endif()
-
-find_library(LIBM m)
-if(LIBM)
-    message(STATUS "m: ${LIBM}")
-    target_link_libraries(sqlite3secure PRIVATE ${LIBM})
-    target_link_libraries(sqlite3secure_a PRIVATE ${LIBM})
-endif()
 
 # EXE Targets
 add_executable(sqlite3shell "src/shell.c" "src/sqlite3shell.rc")
@@ -111,10 +114,12 @@ target_link_libraries(sqlite3shell PRIVATE sqlite3secure)
 # Install
 install(
     TARGETS sqlite3secure sqlite3secure_a sqlite3shell
-    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}${INSTALL_SUB_PATH}"
-    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}${INSTALL_SUB_PATH}"
-    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}${INSTALL_SUB_PATH}"
+    EXPORT sqlite3secureTargets
+    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}${CONFIG_SUB_PATH}"
+    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}${CONFIG_SUB_PATH}"
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}${CONFIG_SUB_PATH}"
     PUBLIC_HEADER DESTINATION include
 )
+export(EXPORT sqlite3secureTargets)
 
 include(CPack)
