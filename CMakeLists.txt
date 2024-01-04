@@ -114,12 +114,11 @@ target_link_libraries(sqlite3shell PRIVATE sqlite3secure)
 # Install
 install(
     TARGETS sqlite3secure sqlite3secure_a sqlite3shell
-    EXPORT sqlite3secureTargets
     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}${CONFIG_SUB_PATH}"
     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}${CONFIG_SUB_PATH}"
     RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}${CONFIG_SUB_PATH}"
     PUBLIC_HEADER DESTINATION include
 )
-export(EXPORT sqlite3secureTargets)
+export(TARGETS sqlite3secure sqlite3secure_a sqlite3shell FILE sqlite3secureTargets.cmake)
 
 include(CPack)
